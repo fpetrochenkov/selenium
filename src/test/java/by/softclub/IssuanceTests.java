@@ -31,7 +31,6 @@ public class IssuanceTests extends BaseTest {
 		openIssuancePage();	  
 		Assert.assertTrue(driver.findElement(By.tagName("h1")).isDisplayed());
 		openIssuancePage().quitPage();
-	    driver.close();
 	}
 	
 	@Test
@@ -40,7 +39,6 @@ public class IssuanceTests extends BaseTest {
 	    UniversalCalculationPage universalPage = openIssuancePage().enterValidData("10");
 	    Assert.assertTrue(driver.findElement(By.tagName("legend")).isDisplayed());
 	    universalPage.quitPage();
-	    driver.close();	    
 	}
 	
 	@Test

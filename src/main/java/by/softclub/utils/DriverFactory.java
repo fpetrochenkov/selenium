@@ -7,8 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverFactory {
-	
-	
+
 	private static long implicit_wait_time = Long.parseLong(ConfigUtil.getProperty("implicit_wait_time"));
 
 	public static WebDriver getDriver() {
@@ -16,6 +15,8 @@ public class DriverFactory {
 		WebDriver driver = null;
 		switch (driverName) {
 		case "chrome":
+			System.setProperty("webdriver.chrome.driver",
+					"C:\\Users\\petrachenkau\\Downloads\\FIREFOXDRIVER\\chromedriver.exe");
 			driver = new ChromeDriver();
 			break;
 		case "firefox":
@@ -29,7 +30,7 @@ public class DriverFactory {
 		setDriverProperty(driver);
 		return driver;
 	}
-	
+
 	public static void setDriverProperty(WebDriver driver) {
 		driver.manage().timeouts().implicitlyWait(implicit_wait_time, TimeUnit.SECONDS);
 		DriverStorage.putWebDriver(Thread.currentThread().getId(), driver);
