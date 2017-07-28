@@ -27,5 +27,9 @@ public class BasePage {
 		getDriver().findElement(By.id("header-form:logoutLink")).click();
 		return new LogInPage(getDriver());
 	}
+	
+	public static void open() {
+		
+	}
     
 }
