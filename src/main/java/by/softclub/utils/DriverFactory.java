@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class DriverFactory {
 
@@ -24,6 +25,10 @@ public class DriverFactory {
 					"C:\\Users\\petrachenkau\\Downloads\\FIREFOXDRIVER\\geckodriver.exe");
 			driver = new FirefoxDriver();
 			break;
+		case "iexplorer":
+			System.setProperty("webdriver.gecko.driver",
+					"C:\\Users\\petrachenkau\\Downloads\\FIREFOXDRIVER\\geckodriver.exe");
+			driver = new InternetExplorerDriver();
 		default:
 			throw new RuntimeException("Driver is not initialized!");
 		}
