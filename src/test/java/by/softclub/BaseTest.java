@@ -17,9 +17,15 @@ public class BaseTest {
 		driver = DriverFactory.getDriver();
 	}
 	
+<<<<<<< HEAD
 	@AfterMethod(alwaysRun = true)
 	public void stopDriver() {
 		driver.quit();
+=======
+	@AfterClass(alwaysRun = true)
+	public void stopDriver() {
+		driver.close();
+>>>>>>> 0971c5b62edc448c7117f9a9a70d0917cadcae09
 	}
 	
 }

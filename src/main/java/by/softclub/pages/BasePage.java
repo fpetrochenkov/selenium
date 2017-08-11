@@ -28,5 +28,9 @@ public abstract class BasePage {
 		logout.click();		
 		return new LogInPage(getDriver());
 	}
+	
+	public static void open() {
+		
+	}
     
 }
