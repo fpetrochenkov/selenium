@@ -1,30 +1,31 @@
 package by.softclub.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-//import by.softclub.utils.ConfigUtil;
+import by.softclub.pages.pageobjects.LogInPage;
+import by.softclub.utils.ConfigUtil;
 
-public class BasePage {
+public abstract class BasePage {
 
 	private WebDriver driver;
-//    private final String url;
+	private final static String LOGINPAGE = ConfigUtil.getProperty("url");
+	
+	@FindBy(id = "header-form:logoutLink")
+	private WebElement logout;
     
     public BasePage(WebDriver driver) {
         this.driver = driver;
-//        this.url = ConfigUtil.getProperty("url");
+        driver.get(LOGINPAGE);
     }
-    
-//    public void openPage() {
-//    	driver.get(url);
-//    } 
-	
+	    
     public WebDriver getDriver() {
     	return driver;
     }
     
 	public LogInPage quitPage() {
-		getDriver().findElement(By.id("header-form:logoutLink")).click();
+		logout.click();		
 		return new LogInPage(getDriver());
 	}
     

@@ -2,22 +2,24 @@ package by.softclub;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 import by.softclub.utils.DriverFactory;
 
 public class BaseTest {
 
-	WebDriver driver;
+	protected WebDriver driver;
 	
-	@BeforeClass(alwaysRun = true)
+	@BeforeMethod(alwaysRun = true)
 	public void startDriver() {
 		driver = DriverFactory.getDriver();
 	}
 	
-//	@AfterClass(alwaysRun = true)
-//	public void stopDriver() {
-//		driver.quit();
-//	}
+	@AfterMethod(alwaysRun = true)
+	public void stopDriver() {
+		driver.quit();
+	}
 	
 }

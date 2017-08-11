@@ -1,6 +1,6 @@
 package by.softclub;
 
-import org.testng.Assert;
+import static org.testng.Assert.assertTrue;
 import org.testng.annotations.Test;
 import org.testng.annotations.Test;
 
@@ -10,28 +10,38 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
-import by.softclub.pages.IssuancePage;
-import by.softclub.pages.LogInPage;
-import by.softclub.pages.MainPage;
-import by.softclub.pages.UniversalCalculationPage;
-import by.softclub.utils.ConfigUtil;
+import by.softclub.pages.pageobjects.IssuancePage;
+import by.softclub.pages.pageobjects.LogInPage;
+import by.softclub.pages.pageobjects.MainPage;
+import by.softclub.pages.pageobjects.UniversalCalculationPage;
 
 
 public class IssuanceTests extends BaseTest {
-	
+
+	/*
+	@Test
 	private IssuancePage openIssuancePage() {
 		LogInPage loginPage = new LogInPage(driver).getLogInPage();
 	    MainPage mainPage = loginPage.logIn(ConfigUtil.getProperty("user"), ConfigUtil.getProperty("password"));
 	    IssuancePage issuancePage = mainPage.openIssuancePage();	    
 	    return issuancePage;
 	}
+	*/
 	
+	@Test
+	public void testOpenIssuancePage() {
+		LogInPage loginPage = PageFactory.initElements(driver, LogInPage.class);
+		MainPage mainPage = loginPage.logIn();
+		IssuancePage issuancePage = mainPage.openIssuancePage();
+		assertTrue(issuancePage.isHeaderDisplayed(), "The Issuance by order page isn't opened");
+	}
+	
+	/*	
 	@Test
 	public void testOpenIssuancePage() {
 		openIssuancePage();	  
 		Assert.assertTrue(driver.findElement(By.tagName("h1")).isDisplayed());
 		openIssuancePage().quitPage();
-	    driver.close();
 	}
 	
 	@Test
@@ -40,7 +50,6 @@ public class IssuanceTests extends BaseTest {
 	    UniversalCalculationPage universalPage = openIssuancePage().enterValidData("10");
 	    Assert.assertTrue(driver.findElement(By.tagName("legend")).isDisplayed());
 	    universalPage.quitPage();
-	    driver.close();	    
 	}
 	
 	@Test
@@ -49,5 +58,6 @@ public class IssuanceTests extends BaseTest {
 		openIssuancePage().enterValidData("10");
 		Assert.assertTrue(driver.findElement(By.className("ui-messages-error-summary")).isDisplayed());
 	}
+*/
 
 }
