@@ -1,5 +1,7 @@
 package by.softclub.pages.pageobjects;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,35 +12,44 @@ import org.openqa.selenium.support.PageFactory;
 import by.softclub.pages.BasePage;
 
 public class IssuancePage extends BasePage {
-	
-	@FindBy(tagName = "h1")
+
+	@FindBy(xpath = "//h1[contains(text(), 'Выдача по документам')]")
 	private WebElement header;
+
+	@FindBy(id = "main-content-form:kind")
+	private WebElement selectType;
+
+	@FindBy(xpath = "//ul[li='Белорусский рубль']/li")
+	private List<WebElement> cashKinds;
+
+	@FindBy(id = "main-content-form:amount_input")
+	private WebElement sum;
+
+	@FindBy(id = "main-content-form:nextButton")
+	private WebElement submitButton;
 
 	public IssuancePage(WebDriver driver) {
 		super(driver);
 	}
-	
-	public UniversalCalculationPage enterValidData(String summ) {
-		Actions builder = new Actions(getDriver());
-		builder.click(getDriver().findElement(By.xpath("//div[@id='main-content-form:kind']"))).
-		click(getDriver().findElement(By.xpath("//li[@class='ui-selectonemenu-item ui-selectonemenu-list-item ui-corner-all'][contains(text(),'Доллар США')]")))
-		.perform();
-		WebElement sum = getDriver().findElement(By.id("main-content-form:amount_input"));
-		sum.sendKeys(summ);
-		builder.sendKeys(sum, summ).perform();
-		getDriver().findElement(By.id("main-content-form:nextButton")).click();
+
+	public UniversalCalculationPage fillCorrectData() {		
+		selectType.click();
+//		for (WebElement cashKind : cashKinds) {
+//			if (cashType.equalsIgnoreCase(cashKind.getText())) {				
+//				cashKind.click();				
+//			}
+//		}
+//		sum.sendKeys(sumCash);
+//		submitButton.click();		
 		return PageFactory.initElements(getDriver(), UniversalCalculationPage.class);
-	}	
-	
-	/** 
-	 * Проверка открытия формы "Выдача по документам"
-	 * */
-	public boolean isHeaderDisplayed() {
-		if(header.isDisplayed()) {
-			return true;
-		} else return false;
 	}
 
-	
+	public boolean isHeaderDisplayed() {
+		if (header.isDisplayed()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }

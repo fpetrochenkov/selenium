@@ -3,6 +3,7 @@ package by.softclub.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import by.softclub.pages.pageobjects.LogInPage;
 import by.softclub.utils.ConfigUtil;
@@ -26,11 +27,7 @@ public abstract class BasePage {
     
 	public LogInPage quitPage() {
 		logout.click();		
-		return new LogInPage(getDriver());
-	}
-	
-	public static void open() {
-		
+		return PageFactory.initElements(getDriver(), LogInPage.class);
 	}
     
 }

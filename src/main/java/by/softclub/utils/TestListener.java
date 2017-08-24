@@ -8,12 +8,9 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
 
-public class TestListener implements ITestListener {
-
+public class TestListener {
+/*
 	private static final Logger LOG = Logger.getLogger(TestListener.class);
 
 	public TestListener() {
@@ -64,5 +61,5 @@ public class TestListener implements ITestListener {
 	@Override
 	public void onStart(ITestContext arg0) {		
 	}
-
+*/
 }
